@@ -1,0 +1,43 @@
+<!-- Файл Базового шаблона , все остальные страницы будут наследоваться от этого шаблона -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/reset.css">
+    <link rel="stylesheet" href="/static/styles/mycss.css">
+    <title>{% block title%}{% endblock %}</title>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="hader-container">
+            <nav class="nav_bar">
+                <ul class="menu">
+                    {% for b in menu %}
+                        <li class="menu__list"><a href="{{b.link}}" class="menu_link">{{b.name}}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="#" class="logo"><img src="/static/files/logo_scadasystems.png" alt="scadasysytems"></a>    
+            </nav>
+        </div>
+    </header>
+
+    <div id="main">
+        <!-- унаследовав этот шаблон будет подставляться HTML код вместо block -->
+        {% block main %}
+        {% endblock %}
+    </div>
+    <footer class="main-footer">
+        <div class="footer__text">
+            <p>Адрес:</p>
+            <p>Мы на связи:</p>
+            <p>e-mail:</p>
+            <a href="#"><img src="/static/files/tg.png" alt=""> <img src="/static/files/yt.png" alt=""></a>
+        </div>
+    </footer>
+</body>
+
+</html>

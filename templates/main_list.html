@@ -1,0 +1,52 @@
+<!-- наследоуемся от базового шаблона, дословно расширяем base.html -->
+{% extends 'base.html' %}
+
+{% block title %}Программы{% endblock %}
+
+{% block main %}
+    <div class="main-container">
+        <aside class="menu__list">
+            <h1 class="title">Импортозамещение</h1>
+            <ul>
+                <li><a href="#">содержание 1</a></li>
+                <li><a href="#">содержание 2</a></li>
+
+            </ul>
+        </aside>
+        <article class="card__wide">
+            {% for c in cards %}
+            <!-- <div class="prod_card">
+                        <div class="card_img">
+                            <a href="product/{{c.id}}"><img src="/static/img/{{c.img}}" alt=""></a>
+                        </div>
+                        
+                        <div class = "card_name"><h2>{{ c.name}}</h2></div>
+                        <div class="card_text">
+                            <h3>Начало / конец маршрута:</h3>
+                            <p>{{c.trip}}</p>
+                        </div>
+                        <div class="card_button">
+                            <a href="product/{{c.id}}">Подробнее</a>
+                        </div>
+                    </div> -->
+                <section>
+                    <a href="{{c.site}}" class="card">
+                        <img src="static/files/{{c.logo}}" alt="logo">
+                    </a>
+                    <div class="card__desc">
+                        <h3 class="card__title">
+                            <a href="card/{{c.id}}">{{c.name_soft}}</a>
+                        </h3>
+                        <p class="card__text">
+                            {{c.min_description}}
+                        </p>
+                        <footer class="card__footer">
+                            <a href="{{c.site}}">{{c.name_company}}</a>
+                        </footer>
+                    </div>
+                </section>
+            {% endfor %}
+
+        </article>
+    </div>
+{% endblock%}
