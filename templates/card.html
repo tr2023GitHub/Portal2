@@ -3,73 +3,97 @@
 {% block title %}О решении{% endblock %}
 
 {% block main %}
-        <div class="container more_card">
-            <a href="/main_list"><-- К списку решений</a>
-                    <div class="container more_card-container">
-                        <div class="card-wrapper">
-                            <div class="container border--left">
-                                <div class="block_cels">
-                                    <samp>Платное решение</samp>
-                                    <p class="soft_industry">Отрасль: {{ind_soft}}</p>
-                                </div>
-                                <!-- <img src="source/files/toir_logo.jpg" alt=""> -->
-                                <h1>{{name_soft}}</h1>
-                                <div class="block_cels">
-                                    <p class="soft_class">{{class_soft}}</p>
-                                    <p class="soft_compatibility">Совместима с: Alpha.Platform</p>
-                                </div>
-                                <p class="min_dsc">{{min_dsc}}</p>
-                                <div class="button">
-                                        <a class="bt1" href="#">Попробовать бесплатно</a>
-                                        <a class="bt2" href="#">Узнать цену</a>
-                                </div>
-                            </div>
-
-                            <div class="container border--right">
-                                <h1>Разработчик</h1>
-                                <img src="/static/files/{{logo_com}}" alt="logo">
-                                <div class="border--right--details">
-                                    <h1 class="title">Подробнее:</h1>
-                                    <ul>
-                                        <li><a href="{{site_com}}"><img src="/static/files/globe.svg"
-                                                    height="16" alt="arrow"> Сайт решений</a></li>
-                                        <li><a href="#"><img src="/static/files/book.svg" height="16" alt="arrow">
-                                                Справка</a></li>
-                                        <li><a href="#"><img src="/static/files/gw.png" height="16" alt="arrow">
-                                            Задать вопрос</a></li>
-
-
-                                    </ul>
-                                    <h1 class="title">Работа с ОС:</h1>
-                                    <ul>
-                                        <li><img src="/static/files/windows.png"
-                                                    height="16" alt="sys wind"> Windows</a></li>
-                                        <li></li>
-                                    </ul>
-                                    <h1 class="title">Лицензирование:</h1>
-                                    <ul>
-                                        <li><img src="/static/files/licenses.png"
-                                                    height="16" alt="sys wind">  по количеству объектов</li>
-                                        <li></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <!-- <button>
-                                <a href="#">Кнопка2</a>
-                            </button> -->
+<div class="container more_card">
+    <a href="/main_list"><-- К списку решений</a>
+    <div class="container more_card-container">
+        <div class="card-wrapper">
+                    <div class="container border--left">
+                        <div class="block_cels">
+                            <samp>Платное решение</samp>
+                            <p class="soft_industry">Отрасль: {{ind_soft}}</p>
                         </div>
-
+                        <!-- <img src="source/files/toir_logo.jpg" alt=""> -->
+                        <h1>{{name_soft}}</h1>
+                        <div class="block_cels">
+                            <p class="soft_class">{{class_soft}}</p>
+                            <p class="soft_compatibility">Совместима с: Alpha.Platform</p>
+                        </div>
+                        <p class="min_dsc">{{min_dsc}}</p>
+                        <div class="button">
+                            <a class="bt1" href="#">Попробовать бесплатно</a>
+                            <a class="bt2" href="#">Узнать цену</a>
+                        </div>
                     </div>
-                    <h2 class="dsc_line">Описание</h2>
-                    <div class="dsc">
 
-                        <p>
-                            {{max_dsc}}
-                        </p>
-                        <img src="/static/images/MA-2048x1365(rumintek).jpg" alt="">
+                    <div class="container border--right">
+                        <h1>Разработчик</h1>
+                        <img src="/static/files/{{logo_com}}" alt="logo">
+                        <div class="border--right--details">
+                            <h1 class="title">Подробнее:</h1>
+                            <ul>
+                                <li><a href="{{site_com}}"><img src="/static/files/globe.svg" height="16" alt="arrow">
+                                        Сайт решений</a></li>
+                                <li><a href="#"><img src="/static/files/book.svg" height="16" alt="arrow">
+                                        Справка</a></li>
+                                <li><a href="#"><img src="/static/files/gw.png" height="16" alt="arrow">
+                                        Задать вопрос</a></li>
+
+
+                            </ul>
+                            <h1 class="title">Работа с ОС:</h1>
+                            <ul>
+                                <li><img src="/static/files/windows.png" height="16" alt="sys wind"> Windows</a></li>
+                            <li></li>
+                            </ul>
+                            <h1 class="title">Лицензирование:</h1>
+                            <ul>
+                                <li><img src="/static/files/licenses.png" height="16" alt="sys wind"> по количеству объектов</li>
+                                <li></li>
+                            </ul>
+                        </div>
                     </div>
+        </div>  <!-- "card-wrapper"   -->
+    </div> <!-- "container more_card-container" -->
+
+    <nav class="dsc_line">
+        <ul class="ajax-list">
+            <li id="btn1" data-page="dsc.html" data-max-dsc="{{ max_dsc }}">Описание</li> 
+            <li id="btn2" data-page="licensing.html ">Лицензирование</li>
+            
+        </ul>  
+        <div id="content" >
+           {% include "dsc.html" %} 
         </div>
-    </main>
-{% endblock %}  
-   
+
+        <script>
+            $(document).ready(function(){
+                // Обработчик клика на элементе li
+                $('.ajax-list').on('click', 'li', function(){
+                    // Удаляем класс selected у всех элементов
+                    $(this).closest('ul').find('li').removeClass('selected');
+                
+                    var pageName = $(this).data('page');
+                    // Получаем значение переменной max_dsc из атрибута data
+                    var maxDscValue = $(this).data('max-dsc');
+                    
+                    // Используем извлеченное значение max_dsc в AJAX-запросе
+                    $.ajax({
+                        url: "/static/includes/" + pageName,
+                        data: { max_dsc: maxDscValue },
+                        cache: false,
+                        success: function(html){
+                            $("#content").html(html);
+                            // Устанавливаем значение src для элемента iframe
+                            $('#max_dsc_iframe').attr('src', maxDscValue);
+                        }
+                    });
+
+                    // Добавляем класс selected к выбранному элементу
+                    $(this).addClass('selected');
+                });
+            });
+        </script> 
+    </nav> 
+</div>
+</main>
+{% endblock %}

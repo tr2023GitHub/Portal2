@@ -81,7 +81,7 @@ body {
     height: 100%;
     display: grid;
     grid-gap: 20px;
-    grid-template-columns:300px 800px;
+    grid-template-columns:400px 800px;
     grid-template-rows: 1fr ;
     grid-template-areas: 
         "aside article ";
@@ -110,7 +110,11 @@ article {
     padding-top: 10px;
     padding-bottom: 10px;
    }
-
+.menu__list button{
+    border-radius: 5px;
+    width: 40%;
+    margin-top: 70px;
+}
 .list-conteiner {
     display: inline-block;
     border-style: solid;
@@ -222,7 +226,6 @@ a {
     background-color: #0c3aaf;
     border-radius: 8px;
     padding: 30px;
-    
 }
 /* .container {
     border: solid black 1px;
@@ -355,7 +358,7 @@ a {
 .dsc_line {
     border-bottom: 1px solid rgb(207, 204, 204);  
     padding: 10px;
-     width: 1024px;
+    width: 1024px;
 }
 .dsc {
     display: flex;
@@ -369,3 +372,42 @@ a {
     width: 300px;
     height: 200px;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    }
+.dsc_line {
+    margin-left: 15px;
+}
+.dsc_line ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex; /* Отображаем элементы в строку */
+}
+
+.dsc_line li {
+    cursor: pointer;
+    padding: 8px;
+    transition: border-bottom 0.3s; /* Используем transition для плавного изменения стилей */
+    border-bottom: 2px solid transparent; /* Устанавливаем прозрачную линию по умолчанию */
+}
+
+.dsc_line li:hover {
+    background-color: transparent; /* Убираем фон при наведении */
+}
+
+.dsc_line li.selected {
+    text-decoration: none; /* Убираем стандартное подчеркивание */
+    border-bottom: 4px solid #000; /* Жирная линия, черного цвета, высотой 2px */
+    padding-bottom: 5px; /* Отступ снизу 5px */
+    background-color: transparent; /* Убираем фон при выборе */
+    font-weight: bold;
+    color: black;
+}
+ #content {
+        margin-top: 0px; /* Отступ сверху 10px */
+        border-top: 1px solid rgba(122, 119, 119, 0.87);
+}
+
